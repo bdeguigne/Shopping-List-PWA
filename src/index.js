@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { Auth0Provider } from '@auth0/auth0-react';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
 import history from './utils/history';
 import getConfig from './config';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+import reportWebVitals from './reportWebVitals';
 
 const onRedirectCallback = function onRedirectCallback(appState) {
   history.push(
@@ -23,7 +24,7 @@ const providerConfig = {
   domain: config.domain,
   clientId: config.clientId,
   ...(config.audience ? { audience: config.audience } : null),
-  redirectUri: window.location.origin,
+  redirectUri: 'http://localhost:5000',
   onRedirectCallback,
 };
 
@@ -40,7 +41,5 @@ ReactDOM.render(
   document.getElementById('root'),
 );
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+serviceWorkerRegistration.register();
+reportWebVitals();
