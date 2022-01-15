@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import { Provider as StyletronProvider, DebugEngine } from 'styletron-react';
+import { Client as Styletron } from 'styletron-engine-atomic';
 import { Auth0Provider } from '@auth0/auth0-react';
+import { StyleReset } from 'atomize';
 import App from './App';
 import history from './utils/history';
 import getConfig from './config';
@@ -20,11 +23,16 @@ const onRedirectCallback = function onRedirectCallback(appState) {
 // for a full list of the available properties on the provider
 const config = getConfig();
 
+const debug = process.env.NODE_ENV === 'production' ? 0 : new DebugEngine();
+
+// 1. Create a client engine instance
+const engine = new Styletron();
+
 const providerConfig = {
   domain: config.domain,
   clientId: config.clientId,
   ...(config.audience ? { audience: config.audience } : null),
-  redirectUri: 'http://localhost:5000',
+  redirectUri: `${window.location.origin}/recipes`,
   onRedirectCallback,
 };
 
@@ -35,8 +43,12 @@ ReactDOM.render(
     audience={providerConfig.audience}
     redirectUri={providerConfig.redirectUri}
     onRedirectCallback={providerConfig.onRedirectCallback}
+    cacheLocation="localstorage"
   >
-    <App />
+    <StyletronProvider value={engine} debug={debug} debugAfterHydration>
+      <StyleReset />
+      <App />
+    </StyletronProvider>
   </Auth0Provider>,
   document.getElementById('root'),
 );

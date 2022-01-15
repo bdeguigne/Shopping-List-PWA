@@ -33,3 +33,15 @@
 .result-block-container .result-block {
   opacity: 1;
 }
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('./fonts/Poppins/Poppins-Regular.ttf') format('truetype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Horizon';
+  src: url('./fonts/Horizon Type - Crossten Extrabold.otf') format('opentype');
+  font-weight: 800;
+}
