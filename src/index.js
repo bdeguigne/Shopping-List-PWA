@@ -5,11 +5,15 @@ import { Provider as StyletronProvider, DebugEngine } from 'styletron-react';
 import { Client as Styletron } from 'styletron-engine-atomic';
 import { Auth0Provider } from '@auth0/auth0-react';
 import { StyleReset } from 'atomize';
+import { Provider } from 'react-redux';
+import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
+
 import App from './App';
 import history from './utils/history';
 import getConfig from './config';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
+import store from './redux/store';
 
 const onRedirectCallback = function onRedirectCallback(appState) {
   history.push(
@@ -36,6 +40,15 @@ const providerConfig = {
   onRedirectCallback,
 };
 
+const theme = createTheme({
+  palette: {
+    primary: { main: '#42927C' },
+  },
+  typography: {
+    fontFamily: 'Poppins',
+  },
+});
+
 ReactDOM.render(
   <Auth0Provider
     domain={providerConfig.domain}
@@ -45,10 +58,14 @@ ReactDOM.render(
     onRedirectCallback={providerConfig.onRedirectCallback}
     cacheLocation="localstorage"
   >
-    <StyletronProvider value={engine} debug={debug} debugAfterHydration>
-      <StyleReset />
-      <App />
-    </StyletronProvider>
+    <Provider store={store}>
+      <StyletronProvider value={engine} debug={debug} debugAfterHydration>
+        <StyleReset />
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
+      </StyletronProvider>
+    </Provider>
   </Auth0Provider>,
   document.getElementById('root'),
 );

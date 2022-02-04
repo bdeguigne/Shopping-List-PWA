@@ -2,12 +2,14 @@ import { TextField, Typography } from '@mui/material';
 import { Div, Button, Text, Icon } from 'atomize';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 
 const Step1 = React.forwardRef((props, ref) => {
+  const dispatch = useDispatch();
+  const [recipeName, setRecipeName] = React.useState('');
   const { onNextClicked } = props;
 
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
     <Div ref={ref} {...props}>
       <Typography
         id="modal-modal-description"
@@ -20,9 +22,12 @@ const Step1 = React.forwardRef((props, ref) => {
         label="Recipe name"
         variant="filled"
         style={{ width: '100%', marginTop: '8px' }}
+        onChange={(input) => setRecipeName(input.target.value)}
+        value={recipeName}
       />
       <Div d="flex" justify="center" m={{ t: '22px' }}>
         <Button
+          disabled={recipeName === ''}
           h="3rem"
           textColor="white"
           bg="#42927C"

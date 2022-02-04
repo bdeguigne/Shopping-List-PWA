@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Router, Route, Routes } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 
@@ -11,11 +11,21 @@ import initFontAwesome from './utils/initFontAwesome';
 import Recipe from './views/Recipe';
 import './App.css';
 import FloatActionButton from './components/floatActionButton';
+import BottomSheetModal from './components/BottomSheetModal';
 
 initFontAwesome();
 
 const App = function App() {
   const { isLoading, error } = useAuth0();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpen = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleClose = () => {
+    setIsModalOpen(false);
+  };
 
   if (error) {
     return <div>Oops... {error.message}</div>;
@@ -34,7 +44,8 @@ const App = function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/external-api" element={<ExternalApi />} />
         </Routes>
-        <FloatActionButton />
+        <FloatActionButton onFabClicked={() => handleOpen()} />
+        <BottomSheetModal isOpen={isModalOpen} onClose={() => handleClose()} />
       </div>
     </Router>
   );

@@ -45,3 +45,7 @@
   src: url('./fonts/Horizon Type - Crossten Extrabold.otf') format('opentype');
   font-weight: 800;
 }
+
+.react-modal-sheet-container {
+  /* background-color: rgb(241, 248, 246) !important; */
+}
