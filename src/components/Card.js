@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Div, Image } from 'atomize';
 import PropTypes from 'prop-types';
 
-import recipebg from '../assets/recipe1.jpg';
 import { AppText, AppTitle } from './AppText';
 
 const CardContainer = styled(Div)`
@@ -33,7 +32,7 @@ const AbsoluteDiv = styled(Div)`
 `;
 
 const Card = (props) => {
-  const { title, ingredients, time } = props;
+  const { title, ingredients, image, id, onClick } = props;
 
   return (
     <CardContainer
@@ -44,8 +43,11 @@ const Card = (props) => {
       d="flex"
       justify="center"
       style={{ position: 'relative' }}
+      onClick={() => {
+        onClick(id);
+      }}
     >
-      <ImageFitCover h="100%" src={recipebg} alt="" rounded="22px" />
+      <ImageFitCover h="100%" src={image} alt="" rounded="22px" />
       <Gradient rounded="22px" w="100%" h="100%" />
       <AbsoluteDiv
         d="flex"
@@ -58,9 +60,7 @@ const Card = (props) => {
       >
         <Div d="flex" flexDir="column" w="100%">
           <AppTitle textColor="#FCFCFA">{title}</AppTitle>
-          <AppText textColor="#FCFCFA">
-            {ingredients} ingredients | {time}
-          </AppText>
+          <AppText textColor="#FCFCFA">{ingredients} ingredients</AppText>
         </Div>
       </AbsoluteDiv>
     </CardContainer>
@@ -70,7 +70,9 @@ const Card = (props) => {
 Card.propTypes = {
   title: PropTypes.string.isRequired,
   ingredients: PropTypes.number.isRequired,
-  time: PropTypes.number.isRequired,
+  image: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default Card;

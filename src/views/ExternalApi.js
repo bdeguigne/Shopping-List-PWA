@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Button, Alert } from 'reactstrap';
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
+import { CircularProgress } from '@mui/material';
 import Highlight from '../components/Highlight';
 import getConfig from '../config';
-import Loading from '../components/Loading';
 
 export const ExternalApiComponent = function ExternalApiComponent() {
   const { apiOrigin = 'http://localhost:3001', audience } = getConfig();
@@ -193,5 +193,5 @@ export const ExternalApiComponent = function ExternalApiComponent() {
 };
 
 export default withAuthenticationRequired(ExternalApiComponent, {
-  onRedirecting: () => <Loading />,
+  onRedirecting: () => <CircularProgress />,
 });

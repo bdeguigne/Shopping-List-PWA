@@ -99,3 +99,12 @@ function receivePushNotification(event) {
   event.waitUntil(self.registration.showNotification(title, options));
 }
 self.addEventListener('push', receivePushNotification);
+
+const redirectToUrlOnClick = (event) => {
+  event.notification.close();
+  event.waitUntil(
+    self.clients.openWindow(event.notification.data.url, '_blank').focus(),
+  );
+};
+
+self.addEventListener('notificationclick', redirectToUrlOnClick);

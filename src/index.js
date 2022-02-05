@@ -6,7 +6,7 @@ import { Client as Styletron } from 'styletron-engine-atomic';
 import { Auth0Provider } from '@auth0/auth0-react';
 import { StyleReset } from 'atomize';
 import { Provider } from 'react-redux';
-import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import App from './App';
 import history from './utils/history';

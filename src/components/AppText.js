@@ -14,7 +14,11 @@ export const AppText = (props) => {
 };
 
 AppText.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+    PropTypes.func,
+  ]).isRequired,
 };
 
 const Title = styled.p`
@@ -30,5 +34,9 @@ export const AppTitle = (props) => {
 };
 
 AppTitle.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+    PropTypes.func,
+  ]).isRequired,
 };

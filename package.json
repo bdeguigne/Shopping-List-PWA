@@ -27,7 +27,7 @@
     "@mui/styled-engine-sc": "^5.1.0",
     "@reduxjs/toolkit": "^1.7.1",
     "atomize": "^1.0.28",
-    "axios": "^0.24.0",
+    "axios": "^0.25.0",
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "express-jwt": "^6.0.0",
@@ -49,16 +49,16 @@
     "react-swipeable-views": "^0.14.0",
     "react-swipeable-views-utils": "^0.14.0",
     "react-transition-group": "^4.4.2",
-    "reactstrap": "^8.0.0",
+    "reactstrap": "^9.0.1",
     "redux": "^4.1.2",
     "styled-components": "^5.3.3",
     "styletron-engine-atomic": "^1.4.8",
-    "styletron-react": "^6.0.2",
     "web-vitals": "^2.1.3",
     "workbox-background-sync": "^5.1.4",
     "workbox-broadcast-update": "^5.1.4",
     "workbox-cacheable-response": "^5.1.4",
     "workbox-core": "^5.1.4",
+    "styletron-react": "^5.2.0",
     "workbox-expiration": "^5.1.4",
     "workbox-google-analytics": "^5.1.4",
     "workbox-navigation-preload": "^5.1.4",
@@ -79,6 +79,7 @@
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "jest-environment-jsdom-sixteen": "^1.0.3",
+    "mini-css-extract-plugin": "2.4.5",
     "nodemon": "^2.0.4",
     "prettier": "^2.5.0"
   },
@@ -109,7 +110,9 @@
       "react/display-name": 0,
       "default-param-last": 0,
       "no-param-reassign": 0,
-      "react/jsx-props-no-spreading": 0
+      "react/jsx-props-no-spreading": 0,
+      "import/prefer-default-export": 0,
+      "no-underscore-dangle": 0
     }
   },
   "browserslist": {

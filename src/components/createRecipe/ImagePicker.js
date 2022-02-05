@@ -11,6 +11,7 @@ const DottedDiv = styled(Div)`
 `;
 
 const ImagePicker = (props) => {
+  const { onImageImported } = props;
   const fileRef = React.createRef();
   const [images, setImages] = React.useState([]);
   const [imageUrl, setImageUrl] = React.useState(null);
@@ -19,10 +20,24 @@ const ImagePicker = (props) => {
     setImages([...e.target.files]);
   };
 
+  function blobToBase64(blob) {
+    // eslint-disable-next-line no-unused-vars
+    return new Promise((resolve, _) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result);
+      reader.readAsDataURL(blob);
+    });
+  }
+
   React.useEffect(() => {
     if (images.length < 1) return;
     setImageUrl(URL.createObjectURL(images[0]));
-  }, [images]);
+    blobToBase64(images[0]).then((base64) => {
+      if (base64) {
+        onImageImported(base64);
+      }
+    });
+  }, [images, onImageImported]);
 
   return imageUrl === null ? (
     <DottedDiv
@@ -64,6 +79,8 @@ const ImagePicker = (props) => {
   );
 };
 
-ImagePicker.propTypes = {};
+ImagePicker.propTypes = {
+  onImageImported: PropTypes.func.isRequired,
+};
 
 export default ImagePicker;

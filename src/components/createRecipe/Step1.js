@@ -33,7 +33,7 @@ const Step1 = React.forwardRef((props, ref) => {
           bg="#42927C"
           rounded="32px"
           p={{ x: '-1.5rem' }}
-          onClick={onNextClicked}
+          onClick={() => onNextClicked(recipeName)}
         >
           <Text p="4px" textSize="1rem" fontFamily="Poppins">
             Choose your ingredients

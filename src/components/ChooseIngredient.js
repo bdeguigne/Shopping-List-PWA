@@ -15,7 +15,7 @@ const ScrollableRow = styled(Div)`
 
 const BorderIndicator = styled(Div)`
   border-bottom: 2px solid
-    ${(props) => (props.isSelected ? '#bfae9d' : 'transparent')};
+    ${(props) => (props.isselected ? '#bfae9d' : 'transparent')};
   border-radius: 0px;
   padding: 8px;
   border-width: 2px;
@@ -52,7 +52,7 @@ const ChooseIngredient = (props) => {
               setSelectedImage(image);
               onIngredientSelected(image);
             }}
-            isSelected={selectedImage === image}
+            isselected={selectedImage === image}
           >
             <Image
               src={`${process.env.REACT_APP_API_URL}/${image}`}

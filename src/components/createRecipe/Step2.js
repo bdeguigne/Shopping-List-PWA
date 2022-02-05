@@ -174,7 +174,9 @@ const Step2 = React.forwardRef((props, ref) => {
         rounded="32px"
         p={{ x: '-1.5rem' }}
         w="100%"
-        onClick={onNextClicked}
+        onClick={() => {
+          onNextClicked(ingredientsInBasket);
+        }}
       >
         <Text p="4px" textSize="1rem" fontFamily="Poppins">
           Import a photo
